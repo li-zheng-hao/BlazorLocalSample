@@ -1,0 +1,27 @@
+﻿@inherits LayoutComponentBase
+@implements IDisposable
+@inject ConnectedUser _ConnectedUser
+@inject ConnectedUserList _ConnectedUserList
+
+@Body
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        _ConnectedUserList.Add(_ConnectedUser);
+    }
+
+    // Don't forget to remove `ConnectedUser` from
+    // `ConnectedUserList` on dispose.
+    public void Dispose()
+    {
+        _ConnectedUserList.Remove(_ConnectedUser);
+    }
+}
