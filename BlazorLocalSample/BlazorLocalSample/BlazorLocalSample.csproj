@@ -11,5 +11,9 @@
     <SelfContained>True</SelfContained>
     <PublishTrimmed>False</PublishTrimmed>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AntDesign" Version="0.19.5.1" />
+  </ItemGroup>
   
 </Project>

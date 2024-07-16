@@ -16,3 +16,26 @@
         right: 0.75rem;
         top: 0.5rem;
     }
+
+
+#root-layout-box ::deep .menu-collapse-trigger {
+    font-size: 18px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#root-layout-box ::deep .menu-collapse-trigger:hover {
+    color: #1890ff;
+}
+
+#root-layout-box ::deep .ant-layout-header {
+    padding: 0;
+}
+
+#root-layout-box ::deep .logo {
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px;
+}

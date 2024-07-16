@@ -2,17 +2,61 @@
 @implements IDisposable
 @inject ConnectedUser _ConnectedUser
 @inject ConnectedUserList _ConnectedUserList
+<div Id="root-layout-box">
+    <Layout Style="height:100vh" >
+        <Sider   NoTrigger Collapsed=collapsed>
+            <div class="logo" style="display:flex;align-items:center;justify-content:center;color:white">Logo</div>
+            <Menu Theme="MenuTheme.Dark" Mode="MenuMode.Inline" DefaultSelectedKeys=@(new[]{"1"})>
+                <MenuItem Key="1" RouterLink="/" RouterMatch="NavLinkMatch.All">
+                    <Icon Type="user" Theme="outline" />
+                    <span>主页</span>
+                </MenuItem>
+                <MenuItem Key="2" RouterLink="/page1" RouterMatch="NavLinkMatch.Prefix">
+                    <Icon Type="video-camera" Theme="outline"  />
+                    <span>页面1</span>
+                </MenuItem>
+                <MenuItem Key="3" RouterLink="/page2" RouterMatch="NavLinkMatch.Prefix">
+                    <Icon Type="upload" Theme="outline" />
+                    <span>页面2</span>
+                </MenuItem>
+            </Menu>
+        </Sider>
+        <Layout>
+            <Header Style="background-color:white">
+                @if (collapsed)
+                {
+                    <Icon Type="menu-unfold" Theme="outline" Class="menu-collapse-trigger" OnClick="toggle" />
+                }
+                else
+                {
+                    <Icon Type="menu-fold" Theme="outline" Class="menu-collapse-trigger" OnClick="toggle" />
+                }
+            </Header>
+            <Content Style="padding:10px">@Body</Content>
+        </Layout>
+    </Layout>
+</div>
 
-@Body
 
 <div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
+    与服务器的连接已断开,正在重连...
+    <a href="" class="reload">重新加载</a>
     <a class="dismiss">🗙</a>
 </div>
 
-@code {
 
+@code {
+    bool collapsed;
+
+    void toggle()
+    {
+        collapsed = !collapsed;
+    }
+
+    void OnCollapse(bool isCollapsed)
+    {
+        Console.WriteLine($"Collapsed: {isCollapsed}");
+    }
     protected override void OnInitialized()
     {
         _ConnectedUserList.Add(_ConnectedUser);
